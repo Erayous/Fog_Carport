@@ -10,6 +10,7 @@ import Exceptions.LoginSampleException;
 import FunctionLayer.SVG;
 import Model.Customer;
 import Model.User;
+import FunctionLayer.SVG;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,6 +82,10 @@ public class FrontController extends HttpServlet {
                 destination = "/index.jsp";
                 break;
             case "admin":
+                ArrayList<Customer> customerList = FacadeLayer.KundeFacade.getKunderList();
+
+                request.setAttribute("customers", customerList);
+
                 int role = 0;
 
                 ArrayList<Customer> login = (ArrayList<Customer>) session.getAttribute("login");
@@ -146,6 +151,7 @@ public class FrontController extends HttpServlet {
                         int role = customerList.get(i).getRole();
                         customer.add(new Customer(customer_id, name, email, password, phone, address, zipcode, city, role));
                         session.setAttribute("login", customer);
+                        session.setAttribute("access", role);
                     }
 
                 }
