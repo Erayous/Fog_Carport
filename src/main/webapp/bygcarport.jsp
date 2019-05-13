@@ -22,14 +22,23 @@
                         </div>
 
 
+                        <form action="MaterialCalculator" method="post">
+                            <input type="hidden" name="source" value="bygcarport"/>
 
-                        <div class="tab-content" id="tabContent">
-                            <!-- Carport -->
+                            <div class="tab-content" id="tabContent">
+                                <!-- Carport -->
+
+                                <input class="form-control" type="hidden" name="size" id="size" value="0" />
+                                <input class="form-control" type="hidden" name="shed" id="shed" value="0" />
+                                <input class="form-control" type="hidden" name="shedtype" id="shedtype" value="0" />
+
+
                             <div class="card-body tab-pane fade show active" id="carport" role="tabpanel" aria-labelledby="carport-tab">
                                 <label><b>Angiv størrelse på carport</b></label>
+
                                 <div class="row" style="margin-bottom: 35px;">
                                     <div class="col-xl-6" style="min-height: 50px;"><button class="btn btn-primary" id="Enkeltknap" type="button" onclick="Enkelt()" style="min-width: 100%;">Enkelt</button></div>
-                                    <div class="col"><button class="btn btn-primary" id="Dobbeltknap" type="button" onclick="Dobbelt()" style="min-width: 100%;">Dobbelt</button></div>
+                                    <div class="col"> <button class="btn btn-primary" id="Dobbeltknap" type="button" onclick="Dobbelt()" style="min-width: 100%;">Dobbelt</button></div>
                                 </div>
 
                                 <label><b>Angiv om du ønsker skur.</b></label>
@@ -55,20 +64,18 @@
                                 </div>
 
 
-                                <form action="FrontController" method="post">
+
 
                                 <label><b>Angiv mål på carport</b></label>
                                 <div class="row">
-                                    <div class="col"><label>Længde (cm):</label><input class="form-control" type="text" style="min-width: 100%;margin-bottom: 15px;"></div>
+                                    <div class="col"><label>Længde (cm):</label><input class="form-control" name="length" type="text" style="min-width: 100%;margin-bottom: 15px;"></div>
                                 </div>
                                 <div class="row" style="margin-bottom: 15px;">
-                                    <div class="col"><label>Bredde (cm):</label><input class="form-control" type="text" style="min-width: 100%;"></div>
+                                    <div class="col"><label>Bredde (cm):</label><input class="form-control" name="width" type="text" style="min-width: 100%;"></div>
                                 </div>
                                 <div class="row" style="margin-bottom: 15px;">
-                                    <div class="col"><label>Højde (cm):</label><input class="form-control" type="text" style="min-width: 100%;"></div>
+                                    <div class="col"><label>Højde (cm):</label><input class="form-control" name="height" type="text" style="min-width: 100%;"></div>
                                 </div>
-                                    <button class="btn btn-success" name="source" value="generate_SVG" type="submit" style="float: right;">Print SVG</button>
-                                </form>
 
 
                                 <div id="skurCM" style="display:none">
@@ -208,11 +215,12 @@
                                 </div>
 
                                 <button class="btn btn-light" type="button" style="float: left;" onclick="getElementById('taget-tab').click()">Tilbage</button>
-                                <button class="btn btn-success" type="button" style="float: right;">Bestil</button>
+                                <button class="btn btn-success" type="submit" style="float: right;">Bestil</button>
                                 <br>
                             </div>
 
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -235,9 +243,11 @@
         if (variableDobbelt == 1){
             variableDobbelt = 0;
             variableEnkelt = 1;
+
         }else{
             variableEnkelt = 1;
         }
+        document.getElementById('size').value = "0";
         document.getElementById('PicturePreview').src = "assets/img/garager/enkelt.jpg";
     }
 
@@ -255,6 +265,7 @@
         }else{
             variableDobbelt = 1;
         }
+        document.getElementById('size').value = "1";
         document.getElementById('PicturePreview').src = "assets/img/garager/dobbelt.jpg";
     }
 
@@ -273,6 +284,7 @@
             variableSkur = 1;
             document.getElementById('PicturePreview').src = "assets/img/garager/dobbeltmskur.jpg";
         }
+        document.getElementById('shed').value = "1";
     }
 
     function UdenSkur() {
@@ -288,6 +300,7 @@
         }else{
             document.getElementById('PicturePreview').src = "assets/img/garager/dobbelt.jpg";
         }
+        document.getElementById('shed').value = "0";
     }
 
     function EnPåTo() {
@@ -299,6 +312,7 @@
         }else{
             variableKlink = 1;
         }
+        document.getElementById('shedtype').value = "1";
 
     }
 
@@ -311,6 +325,7 @@
         }else{
             variableEnPåTo = 1;
         }
+        document.getElementById('shedtype').value = "2";
 
     }
 
