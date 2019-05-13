@@ -55,6 +55,8 @@
                 </div>
             </div>
             <div class="row">
+
+                <!-- Ordre -->
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -106,11 +108,60 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Kunder -->
+
+
+
+                <%
+                    ArrayList<Customer> customerList = (ArrayList<Customer>) request.getAttribute("customers");
+
+                    System.out.println("Kunde listens Størrelse: " + customerList.size());
+                %>
+
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Dine ordrer</h4>
-                            <h6 class="text-muted card-subtitle mb-2">Her kan du se dine ordrer.</h6><button class="btn btn-primary" type="button" style="margin-top: 10px;">Klik her</button></div>
+                            <h4 class="card-title">Nyeste kunder</h4>
+                            <h6 class="text-muted card-subtitle mb-2 my-auto" style="display:inline-block">Her er de nyeste kunder</h6><button class="btn btn-primary float-right" type="button" style="display:inline-block;margin-top: 10px;">Se alle</button></div>
+
+                        <div style="margin:auto;width:100%;">
+                            <form action="FrontController" method="post">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Kunde</th>
+                                    <th scope="col">Tlf</th>
+                                    <th scope="col">By</th>
+                                    <th scope="col">Handling</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <%
+
+                                    if (customerList.size() > 0) {
+
+                                        int start = customerList.size()-1;
+                                        int stop = customerList.size()-4;
+
+                                        for (int i = start; i >= stop; i=i-1) {
+
+                                            System.out.println("Kundens navn: " + customerList.get(i).getName());
+
+                                            out.println("<tr>\n" +
+                                                    "<th scope=\"row\"> " + customerList.get(i).getCustomer_id() + "</th>\n" +
+                                                    "<td> " + customerList.get(i).getName() + "</td>\n" +
+                                                    "<td> " + customerList.get(i).getPhone() + "</td>\n" +
+                                                    "<td> " + customerList.get(i).getCity() + "</td>\n" +
+                                                    "<td><button class=\"btn btn-dark btn-xs\" type=\"submit\" name='search' value='" + customerList.get(i).getCustomer_id() + "'><span style=\"font-size:12px;\">Se Kunde</span></button></td>\n" +
+                                                    "</tr>");
+                                        }
+                                    } %>
+                                </tbody>
+                            </table>
+                </form>
+                        </div>
                     </div>
                 </div>
             </div>

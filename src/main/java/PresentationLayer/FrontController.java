@@ -151,7 +151,6 @@ public class FrontController extends HttpServlet {
                         int role = customerList.get(i).getRole();
                         customer.add(new Customer(customer_id, name, email, password, phone, address, zipcode, city, role));
                         session.setAttribute("login", customer);
-                        session.setAttribute("access", role);
                     }
 
                 }
