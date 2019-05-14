@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@droplet" uuid="f73afb9d-d3b0-4c56-b556-fb651284a320">
+    <data-source source="LOCAL" name="@droplet" uuid="66ec541c-6584-4e4a-83eb-cc6626fc37d6">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
